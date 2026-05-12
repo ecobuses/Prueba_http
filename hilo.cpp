@@ -14,6 +14,7 @@ void hilo::run(){
         objTipo.insert("id",QJsonValue::Null);
         objTipo.insert("tipo","CARGA");
         objCarga.insert("idBateria",1);
+        objCarga.insert("tipo",objTipo);
         jsonArray.append(objCarga);
         QJsonObject objCorriente;
         objCarga.insert("id",QJsonValue::Null);
@@ -21,6 +22,7 @@ void hilo::run(){
         objCorriente.insert("valor",1.14);
         objTipo.insert("id",QJsonValue::Null);
         objTipo.insert("tipo","CORRIENTE");
+        objCorriente.insert("tipo",objTipo);
         objCorriente.insert("idBateria",1);
         jsonArray.append(objCorriente);
         QJsonObject objTension;
@@ -29,6 +31,7 @@ void hilo::run(){
         objTension.insert("valor",2.14);
         objTipo.insert("id",QJsonValue::Null);
         objTipo.insert("tipo","TENSION");
+        objTension.insert("tipo",objTipo);
         objTension.insert("idBateria",1);
         jsonArray.append(objTension);
         QJsonObject objTemperatura;
@@ -37,6 +40,7 @@ void hilo::run(){
         objTemperatura.insert("valor",2.14);
         objTipo.insert("id",QJsonValue::Null);
         objTipo.insert("tipo","TEMPERATURA");
+        objTemperatura.insert("tipo",objTipo);
         objTemperatura.insert("idBateria",1);
         jsonArray.append(objTemperatura);
         util::postHttp(jsonArray);
