@@ -37,7 +37,7 @@ void hilo::run(){
         QJsonObject objTemperatura;
         objCarga.insert("id",QJsonValue::Null);
         objTemperatura.insert("fecha","2026-01-06 00:00:00");
-        objTemperatura.insert("valor",2.14);
+        objTemperatura.insert("valor",6.14);
         objTipo.insert("id",QJsonValue::Null);
         objTipo.insert("tipo","TEMPERATURA");
         objTemperatura.insert("tipo",objTipo);
