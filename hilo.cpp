@@ -8,8 +8,11 @@ void hilo::run(){
         QJsonArray jsonArray;
         QJsonObject objCarga;
         QJsonObject objTipo;
+        QDateTime fechaActual = QDateTime::currentDateTime();
+        // Formatear a: yyyy-MM-dd HH:mm:ss
+        QString formato = fechaActual.toString("yyyy-MM-dd HH:mm:ss");
         objCarga.insert("id",QJsonValue::Null);
-        objCarga.insert("fecha","2026-01-06 00:00:00");
+        objCarga.insert("fecha",formato);
         objCarga.insert("valor",3.14);
         objTipo.insert("id",QJsonValue::Null);
         objTipo.insert("tipo","CARGA");
@@ -18,7 +21,7 @@ void hilo::run(){
         jsonArray.append(objCarga);
         QJsonObject objCorriente;
         objCarga.insert("id",QJsonValue::Null);
-        objCorriente.insert("fecha","2026-01-06 00:00:00");
+        objCorriente.insert("fecha",formato);
         objCorriente.insert("valor",1.14);
         objTipo.insert("id",QJsonValue::Null);
         objTipo.insert("tipo","CORRIENTE");
@@ -27,7 +30,7 @@ void hilo::run(){
         jsonArray.append(objCorriente);
         QJsonObject objTension;
         objCarga.insert("id",QJsonValue::Null);
-        objTension.insert("fecha","2026-01-06 00:00:00");
+        objTension.insert("fecha",formato);
         objTension.insert("valor",2.14);
         objTipo.insert("id",QJsonValue::Null);
         objTipo.insert("tipo","TENSION");
@@ -36,8 +39,8 @@ void hilo::run(){
         jsonArray.append(objTension);
         QJsonObject objTemperatura;
         objCarga.insert("id",QJsonValue::Null);
-        objTemperatura.insert("fecha","2026-01-06 00:00:00");
-        objTemperatura.insert("valor",2.14);
+        objTemperatura.insert("fecha",formato);
+        objTemperatura.insert("valor",10.14);
         objTipo.insert("id",QJsonValue::Null);
         objTipo.insert("tipo","TEMPERATURA");
         objTemperatura.insert("tipo",objTipo);
