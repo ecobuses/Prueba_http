@@ -54,11 +54,15 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../../hilo.cpp \
 		../../main.cpp \
-		../../util.cpp qrc_qml.cpp
+		../../servidor.cpp \
+		../../util.cpp qrc_qml.cpp \
+		moc_servidor.cpp
 OBJECTS       = hilo.o \
 		main.o \
+		servidor.o \
 		util.o \
-		qrc_qml.o
+		qrc_qml.o \
+		moc_servidor.o
 DIST          = /home/sebastian/Qt/6.11.0/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/sebastian/Qt/6.11.0/gcc_64/mkspecs/common/unix.conf \
 		/home/sebastian/Qt/6.11.0/gcc_64/mkspecs/common/linux.conf \
@@ -408,6 +412,7 @@ DIST          = /home/sebastian/Qt/6.11.0/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/sebastian/Qt/6.11.0/gcc_64/mkspecs/features/qt_config.prf \
 		/home/sebastian/Qt/6.11.0/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/sebastian/Qt/6.11.0/gcc_64/mkspecs/features/spec_post.prf \
+		../../.qmake.stash \
 		/home/sebastian/Qt/6.11.0/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/sebastian/Qt/6.11.0/gcc_64/mkspecs/features/toolchain.prf \
 		/home/sebastian/Qt/6.11.0/gcc_64/mkspecs/features/default_pre.prf \
@@ -429,8 +434,10 @@ DIST          = /home/sebastian/Qt/6.11.0/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/sebastian/Qt/6.11.0/gcc_64/mkspecs/features/yacc.prf \
 		/home/sebastian/Qt/6.11.0/gcc_64/mkspecs/features/lex.prf \
 		../../../../Prueba_Http.pro ../../hilo.h \
+		../../servidor.h \
 		../../util.h ../../hilo.cpp \
 		../../main.cpp \
+		../../servidor.cpp \
 		../../util.cpp
 QMAKE_TARGET  = Prueba_Http
 DESTDIR       = 
@@ -792,6 +799,7 @@ Makefile: ../../Prueba_Http.pro /home/sebastian/Qt/6.11.0/gcc_64/mkspecs/linux-g
 		/home/sebastian/Qt/6.11.0/gcc_64/mkspecs/features/qt_config.prf \
 		/home/sebastian/Qt/6.11.0/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/sebastian/Qt/6.11.0/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/home/sebastian/Qt/6.11.0/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/sebastian/Qt/6.11.0/gcc_64/mkspecs/features/toolchain.prf \
 		/home/sebastian/Qt/6.11.0/gcc_64/mkspecs/features/default_pre.prf \
@@ -1170,6 +1178,7 @@ Makefile: ../../Prueba_Http.pro /home/sebastian/Qt/6.11.0/gcc_64/mkspecs/linux-g
 /home/sebastian/Qt/6.11.0/gcc_64/mkspecs/features/qt_config.prf:
 /home/sebastian/Qt/6.11.0/gcc_64/mkspecs/linux-g++/qmake.conf:
 /home/sebastian/Qt/6.11.0/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /home/sebastian/Qt/6.11.0/gcc_64/mkspecs/features/exclusive_builds.prf:
 /home/sebastian/Qt/6.11.0/gcc_64/mkspecs/features/toolchain.prf:
 /home/sebastian/Qt/6.11.0/gcc_64/mkspecs/features/default_pre.prf:
@@ -1214,8 +1223,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../qml.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /home/sebastian/Qt/6.11.0/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../../hilo.h ../../util.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../../hilo.cpp ../../main.cpp ../../util.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../../hilo.h ../../servidor.h ../../util.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../../hilo.cpp ../../main.cpp ../../servidor.cpp ../../util.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -1253,8 +1262,170 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /home/sebastian/Qt/6.11.0/gcc_64/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -std=gnu++1z -Wall -Wextra -fPIC -dM -E -o moc_predefs.h /home/sebastian/Qt/6.11.0/gcc_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all:
+compiler_moc_header_make_all: moc_servidor.cpp
 compiler_moc_header_clean:
+	-$(DEL_FILE) moc_servidor.cpp
+moc_servidor.cpp: ../../servidor.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/QObject \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qobject.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qnamespace.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qglobal.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtcoreglobal.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtversionchecks.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtconfiginclude.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qconfig.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtcore-config.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtconfigmacros.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtdeprecationdefinitions.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtcoreexports.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtdeprecationmarkers.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtclasshelpermacros.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtpreprocessorsupport.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qassert.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtnoop.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtypes.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtversion.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qsysinfo.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qlogging.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qflags.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qcompare_impl.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qatomic.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qyieldcpu.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qconstructormacros.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qdarwinhelpers.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qexceptionhandling.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qforeach.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qttypetraits.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qfunctionpointer.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qmalloc.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qminmax.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qnumeric.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/q20type_traits.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qoverload.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qswap.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtenvironmentvariables.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtresource.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qttranslation.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qversiontagging.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qcompare.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qstdlibdetection.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qcomparehelpers.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtmetamacros.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qfunctionaltools_impl.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qstring.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qchar.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qstringview.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qbytearray.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qrefcount.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qarraydata.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qpair.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qarraydatapointer.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qarraydataops.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qcontainertools_impl.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qxptype_traits.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/q23type_traits.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/q20functional.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/q20memory.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/q17memory.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qbytearrayalgorithms.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qbytearrayview.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qstringfwd.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qlatin1stringview.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qanystringview.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qutf8stringview.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qstringtokenizer.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qstringconverter.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qstringconverter_base.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qlist.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qiterator.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qstringlist.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qalgorithms.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/q20bit.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qsimd.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qcoreevent.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qbasictimer.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qabstracteventdispatcher.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qeventloop.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qdeadlinetimer.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qmetatype.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qdatastream.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qiodevicebase.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qfloat16.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qmath.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtformat_impl.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qiterable.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtaggedpointer.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qmetacontainer.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qcontainerinfo.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qscopeguard.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qobject_impl.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qbindingstorage.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtNetwork/QLocalServer \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtNetwork/qlocalserver.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtNetwork/qtnetworkglobal.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtNetwork/qtnetwork-config.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtNetwork/qtnetworkexports.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtNetwork/qabstractsocket.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtNetwork/qhostaddress.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qshareddata.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qiodevice.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qspan.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/q20iterator.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qproperty.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qpropertyprivate.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtNetwork/QLocalSocket \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtNetwork/qlocalsocket.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/QJsonDocument \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qjsondocument.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qjsonparseerror.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qjsonvalue.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qcborvalue.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qcborcommon.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qdatetime.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qcalendar.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qlocale.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qvariant.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qdebug.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtextstream.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qmap.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qshareddata_impl.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qset.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qhash.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qalloc.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/q23utility.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/q20utility.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qregularexpression.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qurl.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/quuid.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qendian.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/QJsonObject \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qjsonobject.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/QDebug \
+		moc_predefs.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/libexec/moc
+	/home/sebastian/Qt/6.11.0/gcc_64/libexec/moc $(DEFINES) --include /home/sebastian/Documentos/Trabajo/CTA/Pruebas/Prueba_Http/build/Desktop-Debug/moc_predefs.h -I/home/sebastian/Qt/6.11.0/gcc_64/mkspecs/linux-g++ -I/home/sebastian/Documentos/Trabajo/CTA/Pruebas/Prueba_Http -I/home/sebastian/Qt/6.11.0/gcc_64/include -I/home/sebastian/Qt/6.11.0/gcc_64/include/QtQuick -I/home/sebastian/Qt/6.11.0/gcc_64/include/QtOpenGL -I/home/sebastian/Qt/6.11.0/gcc_64/include/QtGui -I/home/sebastian/Qt/6.11.0/gcc_64/include/QtQml -I/home/sebastian/Qt/6.11.0/gcc_64/include/QtQmlIntegration -I/home/sebastian/Qt/6.11.0/gcc_64/include/QtNetwork -I/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore -I. -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../../servidor.h -o moc_servidor.cpp
+
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
@@ -1265,7 +1436,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean 
 
 ####### Compile
 
@@ -1689,8 +1860,175 @@ main.o: ../../main.cpp /home/sebastian/Qt/6.11.0/gcc_64/include/QtGui/QGuiApplic
 		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qjsonobject.h \
 		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/QJsonValue \
 		../../hilo.h \
-		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/QThread
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/QThread \
+		../../servidor.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtNetwork/QLocalServer \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtNetwork/qlocalserver.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qproperty.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qpropertyprivate.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtNetwork/QLocalSocket \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtNetwork/qlocalsocket.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../../main.cpp
+
+servidor.o: ../../servidor.cpp ../../servidor.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/QObject \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qobject.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qnamespace.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qglobal.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtcoreglobal.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtversionchecks.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtconfiginclude.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qconfig.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtcore-config.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtconfigmacros.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtdeprecationdefinitions.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtcoreexports.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtdeprecationmarkers.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtclasshelpermacros.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtpreprocessorsupport.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qassert.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtnoop.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtypes.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtversion.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qsysinfo.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qlogging.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qflags.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qcompare_impl.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qatomic.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qyieldcpu.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qconstructormacros.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qdarwinhelpers.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qexceptionhandling.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qforeach.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qttypetraits.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qfunctionpointer.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qmalloc.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qminmax.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qnumeric.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/q20type_traits.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qoverload.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qswap.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtenvironmentvariables.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtresource.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qttranslation.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qversiontagging.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qcompare.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qstdlibdetection.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qcomparehelpers.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtmetamacros.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qfunctionaltools_impl.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qstring.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qchar.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qstringview.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qbytearray.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qrefcount.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qarraydata.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qpair.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qarraydatapointer.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qarraydataops.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qcontainertools_impl.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qxptype_traits.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/q23type_traits.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/q20functional.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/q20memory.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/q17memory.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qbytearrayalgorithms.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qbytearrayview.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qstringfwd.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qlatin1stringview.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qanystringview.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qutf8stringview.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qstringtokenizer.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qstringconverter.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qstringconverter_base.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qlist.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qiterator.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qstringlist.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qalgorithms.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/q20bit.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qsimd.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qcoreevent.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qbasictimer.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qabstracteventdispatcher.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qeventloop.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qdeadlinetimer.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qmetatype.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qdatastream.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qiodevicebase.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qfloat16.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qmath.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtformat_impl.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qiterable.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtaggedpointer.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qmetacontainer.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qcontainerinfo.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qscopeguard.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qobject_impl.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qbindingstorage.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtNetwork/QLocalServer \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtNetwork/qlocalserver.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtNetwork/qtnetworkglobal.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtNetwork/qtnetwork-config.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtNetwork/qtnetworkexports.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtNetwork/qabstractsocket.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtNetwork/qhostaddress.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qshareddata.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qiodevice.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qspan.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/q20iterator.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qproperty.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qpropertyprivate.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtNetwork/QLocalSocket \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtNetwork/qlocalsocket.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/QJsonDocument \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qjsondocument.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qjsonparseerror.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qjsonvalue.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qcborvalue.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qcborcommon.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qdatetime.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qcalendar.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qlocale.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qvariant.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qdebug.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qtextstream.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qmap.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qshareddata_impl.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qset.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qhash.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qalloc.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/q23utility.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/q20utility.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qregularexpression.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qurl.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/quuid.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qendian.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/QJsonObject \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/qjsonobject.h \
+		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/QDebug
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o servidor.o ../../servidor.cpp
 
 util.o: ../../util.cpp ../../util.h \
 		/home/sebastian/Qt/6.11.0/gcc_64/include/QtCore/QString \
@@ -1878,6 +2216,9 @@ util.o: ../../util.cpp ../../util.h \
 
 qrc_qml.o: qrc_qml.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_qml.o qrc_qml.cpp
+
+moc_servidor.o: moc_servidor.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_servidor.o moc_servidor.cpp
 
 ####### Install
 
