@@ -3,6 +3,7 @@
 #include <QThread>
 #include <QTimeZone>
 #include "util.h"
+#include "servidor.h"
 class hilo:public QThread
 {
 public:
