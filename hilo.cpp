@@ -54,7 +54,7 @@ void hilo::run(){
         objTemperatura.insert("idBateria",idBateria);
         jsonArray.append(objTemperatura);
         int respuesta =variableUtil.postHttp(jsonArray);
-        if(respuesta != -1 && idBateria == -1){
+        if(respuesta != -1 && id != -1){
             idBateria = respuesta;
             variableUtil.guardarIdArchivo(idBateria);
         }
