@@ -9,13 +9,19 @@
 #include<QNetworkRequest>
 #include<QNetworkReply>
 #include<QTimer>
+#include <QFile>
+#include <QTextStream>
 class util
 {
 public:
     util();
-    int static postHttp(QJsonArray &);
+    int  postHttp(QJsonArray &);
+    bool guardarIdArchivo(int id);
+    int  leerIdArchivo();
+    QString getPathId(){return this->pathId;}
 private:
-    QString url="http://localhost:8080/magnitud";
+    const  QString url="http://localhost:8080/magnitud";
+     const QString pathId = "./valorId.txt";
 };
 
 #endif // UTIL_H

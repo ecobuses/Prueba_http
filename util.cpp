@@ -39,3 +39,24 @@ int util::postHttp(QJsonArray &json){
         return -1;
     }
 }
+bool util::guardarIdArchivo(int id){
+    QFile file(this->getPathId());
+    if(file.open(QIODevice::WriteOnly  | QIODevice::Text)){
+        QTextStream in (&file);
+        in<<id;
+        return true;
+    }
+    return false;
+}
+int util::leerIdArchivo(){
+    QFile file(this->getPathId());
+    int id;
+    if(file.open(QIODevice::ReadOnly  | QIODevice::Text)){
+        QTextStream in (&file);
+        in>>id;
+        if(id > 0){
+            return id;
+        }
+    }
+    return -1;
+}

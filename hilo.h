@@ -1,6 +1,8 @@
 #ifndef HILO_H
 #define HILO_H
 #include <QThread>
+#include <QTimeZone>
+#include "util.h"
 class hilo:public QThread
 {
 public:
@@ -9,6 +11,7 @@ public:
     int getId(){return this->id;}
 private:
     int id;
+    util variableUtil;
 protected:
     void run();
 };
