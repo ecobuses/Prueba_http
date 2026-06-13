@@ -71,18 +71,21 @@ void Servidor::leerDatos(QLocalSocket *socket)
         return;
     }
 
-    QJsonObject obj = doc.object();
-
+    datos = doc.object();
+    this->setDatos(doc.object());
+    qDebug()<<"Carga: "<<datos["carga"];
     qDebug() << "\n--- MENSAJE RECIBIDO ---";
 
     qDebug() << "Voltaje:"
-             << obj["voltaje"].toDouble();
+             << datos["voltaje"].toDouble();
 
     qDebug() << "Temperatura:"
-             << obj["temperatura"].toDouble();
+             << datos["temperatura"].toDouble();
 
     qDebug() << "Corriente:"
-             << obj["corriente"].toInt();
+             << datos["corriente"].toDouble();
+    qDebug() << "Carga:"
+             << datos["carga"].toDouble();
 
     QJsonObject respuesta;
 

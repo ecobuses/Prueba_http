@@ -28,10 +28,6 @@ int main(int argc, char *argv[])
     engine.load(url);
     hilo *h = new hilo();
     h->start();
-    Servidor server;
-    if(!server.iniciar("telemetria")){
-        return -1;
-    }
     return app.exec();
 }
 

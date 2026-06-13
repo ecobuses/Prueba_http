@@ -11,6 +11,7 @@
 #include<QTimer>
 #include <QFile>
 #include <QTextStream>
+#include "servidor.h"
 class util
 {
 public:

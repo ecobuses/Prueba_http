@@ -12,7 +12,7 @@ int util::postHttp(QJsonArray &json){
     QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
 
     // the HTTP request
-    QNetworkRequest req(QUrl(QString("http://100.109.75.25:8080/magnitud") ) );
+    QNetworkRequest req(QUrl(QString("http://100.103.238.52:8080/magnitud") ) );
     req.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QNetworkReply *reply = mgr.post(req,QJsonDocument(json).toJson());
     QTimer *timer = new QTimer();
