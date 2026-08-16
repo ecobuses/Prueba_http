@@ -9,7 +9,7 @@ void hilo::run(){
         qDebug()<<"No hay conexión entre aplicaciones";
     }
     while(true){
-        sleep(900);
+        sleep(300);
         QJsonArray jsonArray;
         QJsonObject objCarga;
         QJsonObject objTipo;
